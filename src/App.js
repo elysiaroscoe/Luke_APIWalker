@@ -1,24 +1,45 @@
-import logo from './logo.svg';
+import React, {useState} from 'react';
+import {
+  BrowserRouter,
+  Link,
+  Switch,
+  Route
+} from 'react-router-dom';
 import './App.css';
-
+import Form from './Components/Form';
+import People from './Views/People';
+import Planets from './Views/Planets';
+import Starships from './Views/Starships';
 function App() {
+
+
   return (
+    <BrowserRouter>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container m-5">
+        <Form/>
+
+        <Switch>
+          <Route path="/people/:id">
+            {/* id will be imported through useParams */}
+            <People/>
+          </Route>
+        </Switch>
+
+        <Switch>
+          <Route path="/planets/:id">
+            <Planets/>
+          </Route>
+        </Switch>
+
+        <Switch>
+          <Route path="/starships/:id">
+            <Starships/>
+          </Route>
+        </Switch>
+      </div>
     </div>
+    </BrowserRouter>
   );
 }
 
